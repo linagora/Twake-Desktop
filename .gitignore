@@ -1,0 +1,11 @@
+/release-builds/
+/public/
+index.html
+style.css
+/node_modules/
+/images/
+.DS_Store
+/dist/
+/dist_/
+/certs/
+*.provisionprofile
