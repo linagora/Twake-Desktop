@@ -23,7 +23,7 @@
     "electron-rebuild": "^1.8.6",
     "live-reload": "~1.1.0",
     "mkdirp": "~0.5.1",
-    "npm-run-all": "~2.3.0",
+    "npm-run-all": "~4.0.0",
     "rimraf": "~2.5.3"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "electronify-server": "^0.6.2",
     "live-reload": "~1.1.0",
     "mkdirp": "~0.5.1",
-    "npm-run-all": "~2.3.0",
+    "npm-run-all": "~4.0.0",
     "remote": "^0.2.6",
     "rimraf": "~2.5.3"
   },
