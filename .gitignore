@@ -5,7 +5,8 @@ style.css
 /node_modules/
 /images/
 .DS_Store
-/dist/
 /dist_/
+/dist/
+/dist_2/
 /certs/
 *.provisionprofile
