@@ -36,7 +36,7 @@
     "electron-osx-sign": "^0.4.12",
     "electron-prompt": "^1.4.0",
     "electron-store": "^2.0.0",
-    "electron-updater": "4.0.6",
+    "electron-updater": "4.3.9",
     "electronify-server": "^0.6.2",
     "live-reload": "~1.1.0",
     "mkdirp": "~0.5.1",
