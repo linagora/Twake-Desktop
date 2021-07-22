@@ -1,18 +1,18 @@
-const { app, BrowserWindow, Menu, shell } = require("electron");
-const electron = require("electron");
-const path = require("path");
-const url = require("url");
-const { download } = require("electron-dl");
-var os = require("os");
-const Store = require("electron-store");
-const prompt = require("electron-prompt");
-const electronLocalshortcut = require("electron-localshortcut");
-const { autoUpdater } = require("electron-updater");
+import { app, BrowserWindow, Menu, shell } from "electron";
+import electron from "electron";
+import path from "path";
+import url from "url";
+import { download } from "electron-dl";
+import os from "os";
+import Store from "electron-store";
+import prompt from "electron-prompt";
+import electronLocalshortcut from "electron-localshortcut";
+import { autoUpdater } from "electron-updater";
 
 const store = new Store();
 
-var domain = store.get("twake_domain");
-var protocol = store.get("twake_protocol");
+var domain: any = store.get("twake_domain");
+var protocol: any = store.get("twake_protocol");
 if (!domain) {
   domain = "web.twake.app";
 }
@@ -54,7 +54,7 @@ var changeServer = function () {
     .catch(console.error);
 };
 
-var template = [
+var template: any = [
   {
     label: "Twake",
     submenu: [
@@ -113,10 +113,8 @@ var template = [
   },
 ];
 
-var winUpdater;
-var win;
-
-app.dirname = __dirname;
+var winUpdater: any;
+var win: any;
 app.on("ready", function () {
   if (os.platform() === "win32") {
     app.setAppUserModelId("com.twake.twakeapp");
@@ -127,18 +125,18 @@ app.on("ready", function () {
   // autoUpdater.checkForUpdates();
 });
 
-function sendStatusToWindow(text, ev) {
+function sendStatusToWindow(text: string, e: any) {
   console.log("1.2.50 update : " + text);
-  winUpdater.webContents.send("update", text, ev);
+  winUpdater.webContents.send("update", text, e);
 }
-autoUpdater.on("checking-for-update", () => {
-  sendStatusToWindow("checking-for-update");
+autoUpdater.on("checking-for-update", (e) => {
+  sendStatusToWindow("checking-for-update", e);
 });
-autoUpdater.on("update-available", (ev, info) => {
-  sendStatusToWindow("update-available");
+autoUpdater.on("update-available", (e, info) => {
+  sendStatusToWindow("update-available", e);
 });
-autoUpdater.on("update-not-available", (ev, info) => {
-  sendStatusToWindow("update-not-available");
+autoUpdater.on("update-not-available", (e, info) => {
+  sendStatusToWindow("update-not-available", e);
   createWindow();
 });
 autoUpdater.on("error", (ev, err) => {
@@ -148,8 +146,8 @@ autoUpdater.on("error", (ev, err) => {
 autoUpdater.on("download-progress", (ev) => {
   sendStatusToWindow("download-progress", ev);
 });
-autoUpdater.on("update-downloaded", (ev, info) => {
-  sendStatusToWindow("update-downloaded");
+autoUpdater.on("update-downloaded", (e, info) => {
+  sendStatusToWindow("update-downloaded", e);
   setTimeout(function () {
     autoUpdater.quitAndInstall();
   }, 5000);
@@ -162,7 +160,7 @@ function createWindow() {
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
-  var data = {
+  var data: any = {
     show: false,
     width: screenDimensions.width * 0.8,
     height: screenDimensions.height * 0.8,
@@ -171,7 +169,7 @@ function createWindow() {
     transparent: false,
     toolbar: false,
     titleBarStyle: "customButtonsOnHover",
-    icon: path.join(__dirname, "assets/icons/png/64x64.png"),
+    icon: "public/icons/png/64x64.png",
   };
 
   if (os.platform() == "darwin") {
@@ -235,7 +233,7 @@ function createWindow() {
 
   //win.webContents.openDevTools()
 
-  win.webContents.on("new-window", function (event, url) {
+  win.webContents.on("new-window", function (event: any, url: any) {
     event.preventDefault();
     if (
       !(
@@ -245,7 +243,7 @@ function createWindow() {
     ) {
       shell.openExternal(url);
     } else {
-      download(BrowserWindow.getFocusedWindow(), url, {
+      download(BrowserWindow.getFocusedWindow() as BrowserWindow, url, {
         saveAs: true,
         showBadge: false,
       })

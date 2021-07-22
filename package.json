@@ -4,16 +4,20 @@
   "version": "1.2.50",
   "author": "Twake",
   "description": "Twake",
-  "main": "main.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder -mwl",
-    "dist-w": "electron-builder -w",
-    "dist-l": "electron-builder -l",
-    "rebuild": "$(npm bin)/electron-rebuild"
+    "build": "tsc",
+    "start": "npm run build && electron .",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder -mwl",
+    "dist-m": "npm run build && electron-builder -m",
+    "dist-w": "npm run build && electron-builder -w",
+    "dist-l": "npm run build && electron-builder -l",
+    "rebuild": "npm run build && $(npm bin)/electron-rebuild"
   },
   "devDependencies": {
+    "@types/electron-localshortcut": "^3.1.0",
+    "@types/electron-prompt": "^1.6.1",
     "build-electron-app": "^0.2.0",
     "copyfiles": "^2.4.1",
     "electron": "^13.1.7",
@@ -39,27 +43,27 @@
     "electron-updater": "^4.3.9",
     "electronify-server": "^0.6.2",
     "node": "^16.5.0",
-    "remote": "^0.2.6"
+    "remote": "^0.2.6",
+    "typescript": "^4.3.5"
   },
   "postinstall": "electron-builder install-app-deps",
   "build": {
-    "afterSign": "notarize.js",
+    "afterSign": "./dist/notarize.js",
     "files": [
-      "webview-ipc.js",
+      "./dist/*",
       "node_modules/**/*",
       "package.json",
-      "main.js",
-      "style.css"
+      "./public/icons/*"
     ],
     "asar": true,
     "appId": "com.twake.twakeapp",
     "artifactName": "Setup_Twake_lastest.${ext}",
     "directories": {
-      "output": "dist/build"
+      "output": "./builds"
     },
     "mac": {
       "category": "public.app-category.productivity",
-      "icon": "assets/icons/mac/icon.icns",
+      "icon": "public/icons/mac/icon.icns",
       "entitlements": "entitlements.mac.plist",
       "entitlementsInherit": "entitlements.mac.plist",
       "gatekeeperAssess": false,
@@ -72,13 +76,13 @@
     },
     "mas": {
       "category": "public.app-category.productivity",
-      "icon": "assets/icons/mac/icon.icns",
+      "icon": "public/icons/mac/icon.icns",
       "entitlements": "entitlements.mas.plist",
       "entitlementsInherit": "entitlements.mas.plist",
       "type": "distribution"
     },
     "win": {
-      "icon": "assets/icons/win/icon.ico",
+      "icon": "public/icons/win/icon.ico",
       "target": [
         {
           "target": "nsis",
@@ -89,7 +93,7 @@
       ]
     },
     "linux": {
-      "icon": "assets/icons/png"
+      "icon": "public/icons/png"
     },
     "dmg": {
       "sign": false

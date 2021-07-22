@@ -1,5 +1,6 @@
 /release-builds/
-/public/
+/dist/
+/builds/
 index.html
 style.css
 /node_modules/
