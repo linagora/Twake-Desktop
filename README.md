@@ -1,19 +1,26 @@
 # Getting Started
 
 1. `npm i`
+2. `npm run dev`
 
-## Dev mode
+# Available Scripts
 
-`npm run start`
+### `npm run dev`
 
-## Linux build
+Runs the app in the development mode.
 
-`npm run dist-l`
+### `npm run build`
 
-## Mac build
+All image builds in the `build` folder.
 
-`npm run dist-m`
+### `npm run build-l`
 
-## Windows build
+Linux image build in the `build` folder.
 
-`npm run dist-w`
+### `npm run build-m`
+
+Mac image build in the `build` folder.
+
+### `npm run build-w`
+
+Windows image build in the `build` folder.

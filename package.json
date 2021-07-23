@@ -2,21 +2,17 @@
   "name": "twake",
   "productName": "Twake",
   "version": "1.2.50",
-  "author": {
-    "name": "Twake",
-    "email": "svieira@linagora.com"
-  },
+  "author": "Twake",
   "description": "Twake",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "npm run build && electron .",
-    "pack": "npm run build && electron-builder --dir",
-    "dist": "npm run build && electron-builder -mwl",
-    "dist-m": "npm run build && electron-builder -m",
-    "dist-w": "npm run build && electron-builder -w",
-    "dist-l": "npm run build && electron-builder -l",
-    "rebuild": "npm run build && $(npm bin)/electron-rebuild"
+    "compile": "tsc",
+    "dev": "npm run compile && electron .",
+    "pack": "npm run compile && electron-builder --dir",
+    "build": "npm run compile && electron-builder -mwl",
+    "build-m": "npm run compile && electron-builder -m",
+    "build-w": "npm run compile && electron-builder -w",
+    "build-l": "npm run compile && electron-builder -l"
   },
   "devDependencies": {
     "@types/electron-localshortcut": "^3.1.0",
