@@ -1,8 +1,11 @@
 {
-  "name": "Twake",
+  "name": "twake",
   "productName": "Twake",
   "version": "1.2.50",
-  "author": "Twake",
+  "author": {
+    "name": "Twake",
+    "email": "svieira@linagora.com"
+  },
   "description": "Twake",
   "main": "./dist/index.js",
   "scripts": {
@@ -51,19 +54,20 @@
     "afterSign": "./dist/notarize.js",
     "files": [
       "./dist/*",
-      "node_modules/**/*",
-      "package.json",
-      "./public/icons/*"
+      "./node_modules/**/*",
+      "./package.json",
+      "./static/**/*"
     ],
     "asar": true,
     "appId": "com.twake.twakeapp",
     "artifactName": "Setup_Twake_lastest.${ext}",
     "directories": {
-      "output": "./builds"
+      "output": "build",
+      "buildResources": "static"
     },
     "mac": {
       "category": "public.app-category.productivity",
-      "icon": "public/icons/mac/icon.icns",
+      "icon": "static/icons/mac/icon.icns",
       "entitlements": "entitlements.mac.plist",
       "entitlementsInherit": "entitlements.mac.plist",
       "gatekeeperAssess": false,
@@ -76,13 +80,13 @@
     },
     "mas": {
       "category": "public.app-category.productivity",
-      "icon": "public/icons/mac/icon.icns",
+      "icon": "static/icons/png/512x512.png",
       "entitlements": "entitlements.mas.plist",
       "entitlementsInherit": "entitlements.mas.plist",
       "type": "distribution"
     },
     "win": {
-      "icon": "public/icons/win/icon.ico",
+      "icon": "static/icons/win/icon.ico",
       "target": [
         {
           "target": "nsis",
@@ -93,7 +97,10 @@
       ]
     },
     "linux": {
-      "icon": "public/icons/png"
+      "category": "public.app-category.productivity",
+      "icon": "static/icons/png/512x512.png",
+      "asar": true,
+      "target": "AppImage"
     },
     "dmg": {
       "sign": false

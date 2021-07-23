@@ -160,21 +160,28 @@ function createWindow() {
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
-  var data: any = {
+  var data: electron.BrowserWindowConstructorOptions = {
     show: false,
     width: screenDimensions.width * 0.8,
     height: screenDimensions.height * 0.8,
     frame: true,
     title: "Twake",
     transparent: false,
-    toolbar: false,
     titleBarStyle: "customButtonsOnHover",
-    icon: "public/icons/png/64x64.png",
   };
 
-  if (os.platform() == "darwin") {
+  if (os.platform() === "darwin") {
     data.frame = false;
     data.titleBarStyle = "hidden";
+    data.icon = path.join(__dirname, "../static/icons/mac/icon.icns");
+  }
+
+  if (os.platform() === "linux") {
+    data.icon = path.join(__dirname, "../static/icons/png/512x512.png");
+  }
+
+  if (os.platform() === "win32") {
+    data.icon = path.join(__dirname, "../static/icons/win/icon.ico");
   }
 
   win = new BrowserWindow(data);

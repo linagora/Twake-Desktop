@@ -1,6 +1,6 @@
 /release-builds/
 /dist/
-/builds/
+/build/
 index.html
 style.css
 /node_modules/
