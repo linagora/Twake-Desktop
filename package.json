@@ -64,8 +64,8 @@
     "mac": {
       "category": "public.app-category.productivity",
       "icon": "static/icons/mac/icon.icns",
-      "entitlements": "entitlements.mac.plist",
-      "entitlementsInherit": "entitlements.mac.plist",
+      "entitlements": "static/entitlements.mac.plist",
+      "entitlementsInherit": "static/entitlements.mac.plist",
       "gatekeeperAssess": false,
       "hardenedRuntime": true,
       "target": [
@@ -77,8 +77,8 @@
     "mas": {
       "category": "public.app-category.productivity",
       "icon": "static/icons/png/512x512.png",
-      "entitlements": "entitlements.mas.plist",
-      "entitlementsInherit": "entitlements.mas.plist",
+      "entitlements": "static/entitlements.mas.plist",
+      "entitlementsInherit": "static/entitlements.mas.plist",
       "type": "distribution"
     },
     "win": {
