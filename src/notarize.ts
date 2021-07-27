@@ -13,7 +13,7 @@ export default async function notarizing(context: any) {
   return await notarize({
     appBundleId: "com.twake.twake",
     appPath: `${appOutDir}/${appName}.app`,
-    appleId: "romaric.mollard@gmail.com",
-    appleIdPassword: "cnxv-mvrk-oion-eoog", //À regénérer à chaque fois sur https://appleid.apple.com/account/manage dans mot de passe pour l'application
+    appleId: "",
+    appleIdPassword: "", // To be regenerated each time on https://appleid.apple.com/account/manage in password for the application section
   });
 }

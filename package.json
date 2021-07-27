@@ -49,7 +49,7 @@
   "build": {
     "afterSign": "./dist/notarize.js",
     "files": [
-      "./dist/*",
+      "./dist/**/*",
       "./node_modules/**/*",
       "./package.json",
       "./static/**/*"
