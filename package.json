@@ -84,22 +84,8 @@
     "win": {
       "icon": "static/icons/win/icon.ico",
       "target": [
-        {
-          "target": [
-            "nsis"
-          ],
-          "arch": [
-            "x64"
-          ]
-        },
-        {
-          "target": [
-            "msi"
-          ],
-          "arch": [
-            "x64"
-          ]
-        }
+        "nsis",
+        "msi"
       ]
     },
     "linux": {
