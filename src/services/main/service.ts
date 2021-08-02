@@ -92,6 +92,8 @@ class MainService {
 
     const data = this.getBrowserWindowConstructorOptions(mainScreenSize);
 
+    console.log(data);
+
     switch (getCurrentOS()) {
       case "darwin":
         data.frame = false;
@@ -202,7 +204,7 @@ class MainService {
         },
         {
           label: "Open developer tools",
-          accelerator: "CmdOrCtrl+Shift+I",
+          accelerator: "CmdOrCtrl+Alt+I",
           click: () => this.currentWindow?.webContents.openDevTools(),
         },
       ],
@@ -218,8 +220,8 @@ class MainService {
   ): BrowserWindowConstructorOptions {
     return {
       show: false,
-      width: mainScreenSize.width * 0.8,
-      height: mainScreenSize.height * 0.8,
+      width: Math.ceil(mainScreenSize.width * 0.8),
+      height: Math.ceil(mainScreenSize.height * 0.8),
       frame: true,
       title: "Twake",
       transparent: false,
