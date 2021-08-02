@@ -141,7 +141,7 @@ class MainService {
 
     this.currentWindow?.setTitle("Twake");
 
-    this.currentWindow?.setBackgroundColor("#1452F4");
+    this.currentWindow?.setBackgroundColor("#0d0f38");
 
     this.currentWindow?.loadURL(getUrlFormat(this.domain, this.protocol));
 
