@@ -4034,11 +4034,6 @@
   "resolved" "https://registry.npmjs.org/node-addon-api/-/node-addon-api-1.7.2.tgz"
   "version" "1.7.2"
 
-"node-bin-setup@^1.0.0":
-  "integrity" "sha512-uPIxXNis1CRbv1DwqAxkgBk5NFV3s7cMN/Gf556jSw6jBvV7ca4F9lRL/8cALcZecRibeqU+5dFYqFFmzv5a0Q=="
-  "resolved" "https://registry.npmjs.org/node-bin-setup/-/node-bin-setup-1.0.6.tgz"
-  "version" "1.0.6"
-
 "node-gyp@^7.1.0":
   "integrity" "sha512-CbpcIo7C3eMu3dL1c3d0xw449fHIGALIJsRP4DDPHpyiW8vcriNY7ubh9TE4zEKfSxscY7PjeFnshE7h75ynjQ=="
   "resolved" "https://registry.npmjs.org/node-gyp/-/node-gyp-7.1.2.tgz"
@@ -4085,13 +4080,6 @@
   "integrity" "sha512-ma6oU4Sk0qOoKEAymVoTvk8EdXEobdS7m/mAGhDJ8Rouugho48crHBORAmy5BoOcv8wraPM6xumapQp5hl4iIQ=="
   "resolved" "https://registry.npmjs.org/node-version/-/node-version-1.2.0.tgz"
   "version" "1.2.0"
-
-"node@^16.5.0":
-  "integrity" "sha512-DPEcUzmElJSkHPRsb/5qSZIeA/pPMGXlLSFT3DBAWmiS9w2LxlgQ6MfJ3XtQMU9j1b2AMEG738+WD06PnfQRDQ=="
-  "resolved" "https://registry.npmjs.org/node/-/node-16.5.0.tgz"
-  "version" "16.5.0"
-  dependencies:
-    "node-bin-setup" "^1.0.0"
 
 "noms@0.0.0":
   "integrity" "sha1-2o69nzr51nYJGbJ9nNyAkqczKFk="
@@ -5840,6 +5828,11 @@
   "integrity" "sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A=="
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-3.4.0.tgz"
   "version" "3.4.0"
+
+"v8-compile-cache@^2.3.0":
+  "integrity" "sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA=="
+  "resolved" "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
+  "version" "2.3.0"
 
 "validate-npm-package-license@^3.0.1":
   "integrity" "sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew=="
