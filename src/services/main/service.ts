@@ -143,7 +143,9 @@ class MainService {
 
     this.currentWindow?.setBackgroundColor("#0d0f38");
 
-    this.currentWindow?.loadURL(getUrlFormat(this.domain, this.protocol));
+    this.currentWindow?.loadURL(getUrlFormat(this.domain, this.protocol), {
+      extraHeaders: "pragma: no-cache\n",
+    });
 
     this.currentWindow?.webContents.on("did-fail-load", this.onDidFailLoad);
 
@@ -239,7 +241,7 @@ class MainService {
     this.createWindow();
 
     ipcMain.on("application:update_badge", (event, arg) => {
-      app.setBadgeCount(parseInt(arg));
+      app.setBadgeCount(parseInt(arg) || 0);
     });
   };
 
