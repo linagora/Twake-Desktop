@@ -73,7 +73,7 @@ npm manifest:
     },
     "postinstall": "electron-builder install-app-deps",
     "build": {
-      "afterSign": "notarize.js",
+      "afterSign": "./public/dist/notarize.js",
       "files": [
         "webview-ipc.js",
         "node_modules/**/*",

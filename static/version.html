@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twake Updater</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body style="padding:10px;">
+  <div id="messages" style="display:flex;">
+      <div id="satut"  style="display:inline-block;">
+      </div>
+      <div id="loading" style="display:inline-block;flex:1;text-align:right;">
+      </div>
+  </div>
+  <div id="prog" style="width:100%;margin:auto;">
+      <div class="progress" style="height:6px;background-color:#ccddff;"><div id="progressBar" class="indeterminate" style="background-color: #837dff"></div></div>
+  </div>
+  <div id="deb" style="width:100%;text-align:right;margin-top:-8px;">
+  </div>
+    <script type="application/javascript">
+        const {ipcRenderer} = require('electron');
+        ipcRenderer.on('update', function(event, text,ev) {
+            var container = document.getElementById('satut');
+            if(text=="checking-for-update"){
+                container.innerHTML = text;
+            }
+            else if(text == "update-available"){
+                container.innerHTML = text;
+            }
+            else if(text == "update-not-available"){
+                container.innerHTML = text;
+            }
+            else if(text == "error"){
+                container.innerHTML = text +" : "+ev;
+            }
+            else if(text == "download-progress"){
+                if(ev.percent<100 && $("#progressBar").hasClass('indeterminate')){
+                    $("#progressBar").removeClass('indeterminate');
+                    $("#progressBar").addClass('determinate');
+                }
+                if(ev.percent==100 && $("#progressBar").hasClass('determinate')){
+                    $("#progressBar").addClass('indeterminate');
+                    $("#progressBar").removeClass('determinate');
+                    var containerLoading = document.getElementById('loading');
+                    var containerDeb = document.getElementById('deb');
+                    container.innerHTML = "Installing...";
+                    containerLoading.innerHTML = ev.percent.toFixed(1)+"%";
+                    containerDeb.innerHTML = "";
+                }
+                else{
+                    $("#progressBar").animate({"width":ev.percent+"%"},0.2);
+                    var containerLoading = document.getElementById('loading');
+                    var containerDeb = document.getElementById('deb');
+                    container.innerHTML = "Downloading...";
+                    containerLoading.innerHTML = "<span style='font-size:12px;opacity:0.8;margin-right:10px;'>"+getReadableFileSizeString(ev.transferred)+"/"+getReadableFileSizeString(ev.total)+"</span>"+ev.percent.toFixed(1)+"% ";
+                    containerDeb.innerHTML = getReadableFileSizeString(ev.bytesPerSecond)+"/s";
+                }
+            }
+            else if(text == "update-downloaded"){
+
+            }
+        });
+        function getReadableFileSizeString(fileSizeInBytes) {
+            var i = -1;
+            var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+            do {
+                fileSizeInBytes = fileSizeInBytes / 1000;
+                i++;
+            } while (fileSizeInBytes > 1000);
+
+            return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
+        };
+</script>
+</body>
+</html>
