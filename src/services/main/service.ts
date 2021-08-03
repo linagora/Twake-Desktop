@@ -197,7 +197,7 @@ class MainService {
         {
           label: "Reload application",
           accelerator: "CmdOrCtrl+R",
-          click: this.currentWindow?.reload,
+          click: this.currentWindow?.reload(),
         },
         {
           label: "Change server",
