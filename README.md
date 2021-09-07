@@ -1,3 +1,9 @@
+# Supported OSes
+
+- MacOS 10.11 and later (including M1 chips)
+- Windows 7 and later 32 and 64bit in the same file
+- Linux Ubuntu 14.04 or later, Fedora 24 or later, Debian 8 or later
+
 # Getting Started
 
 ### 1. `npm i`
