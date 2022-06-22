@@ -107,6 +107,12 @@
         "provider": "generic",
         "url": "http://update.twakeapp.com"
       }
-    ]
+    ],
+    "protocols": {
+      "name": "Twake",
+      "schemes": [
+        "twake"
+      ]
+    }
   }
 }
