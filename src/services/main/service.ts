@@ -2,11 +2,12 @@ import electron, {
   app,
   BrowserWindow,
   BrowserWindowConstructorOptions,
+  dialog,
   ipcMain,
   Menu,
   shell,
 } from "electron";
-import url from "url";
+
 import path from "path";
 import prompt from "electron-prompt";
 import StoreService from "../store/service";
@@ -44,7 +45,48 @@ class MainService {
   }
 
   public init() {
+    if (process.defaultApp) {
+      if (process.argv.length >= 2) {
+        app.setAsDefaultProtocolClient('twake', process.execPath, [path.resolve(process.argv[1])])
+      }
+    } else {
+      app.setAsDefaultProtocolClient('twake')
+    }
+
+    const lock = app.requestSingleInstanceLock();
+
+    if (!lock) {
+      app.quit();
+      return;
+    }
+
     app.on("ready", this.onReady);
+
+    app.whenReady().then(() => {
+      const argv = process.argv;
+      const url = argv[argv.length - 1];
+
+      if (url) {
+        this.handleDeepLink(url);
+      }
+    });
+
+    app.on("open-url", (event, url) => {
+      event.preventDefault();
+      this.handleDeepLink(url);
+    });
+
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+      if (this.currentWindow) {
+        if (this.currentWindow.isMinimized()) this.currentWindow.restore();
+        this.currentWindow.focus();
+      }
+
+      const url = commandLine[commandLine.length - 1];
+      if (url) {
+        this.handleDeepLink(url);
+      }
+    });
   }
 
   private changeServer = () => {
@@ -295,6 +337,24 @@ class MainService {
 
   private showWindow(): void {
     this.currentWindow?.show();
+  }
+
+  /**
+   * CHanges the current page to the provided url by deep link
+   *
+   * @private
+   * @param {string} url - url to open
+   * @memberof MainService
+   */
+  private handleDeepLink = (url: string): void => {
+    const urlObject = new URL(url);
+    const urlDomain = urlObject.hostname;
+
+    if (urlDomain === this.domain) {
+      const redirectUrl = url.replace(`twake:`, `${this.protocol}:`);
+
+      this.currentWindow?.loadURL(redirectUrl);
+    }
   }
 }
 
