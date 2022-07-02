@@ -10,6 +10,14 @@
 
 ### 2. `npm run dev`
 
+# Note for mac before build:
+
+```
+export APPLE_ID=<apple_email>
+export APPLE_PROVIDER=<apple team id>
+export APPLE_ID_PASSWORD=<application password>
+```
+
 # Available Scripts
 
 ### `npm run dev`

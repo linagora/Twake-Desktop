@@ -11,3 +11,5 @@ style.css
 /dist_2/
 /certs/
 *.provisionprofile
+/build/
+.dccache
