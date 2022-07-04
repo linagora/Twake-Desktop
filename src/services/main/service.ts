@@ -24,7 +24,6 @@ import { DomainType, ProtocolType, Template } from "./types";
 import { download } from "electron-dl";
 import { autoUpdater } from "electron-updater"
 
-
 type CustomBrowserWindowEntriesType = {
   config_disable_buttons?: boolean;
   config_disable_move?: boolean;
