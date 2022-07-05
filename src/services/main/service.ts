@@ -2,7 +2,6 @@ import electron, {
   app,
   BrowserWindow,
   BrowserWindowConstructorOptions,
-  dialog,
   ipcMain,
   Menu,
   shell,
@@ -65,10 +64,12 @@ class MainService {
 
     app.whenReady().then(() => {
       const argv = process.argv;
-      const url = argv[argv.length - 1];
+      if (argv.length >= 2) {
+        const url = argv[argv.length - 1];
 
-      if (url) {
-        this.handleDeepLink(url);
+        if (url) {
+          this.handleDeepLink(url);
+        }
       }
     });
 
@@ -83,9 +84,11 @@ class MainService {
         this.currentWindow.focus();
       }
 
-      const url = commandLine[commandLine.length - 1];
-      if (url) {
-        this.handleDeepLink(url);
+      if (commandLine.length >= 2) {
+        const url = commandLine[commandLine.length - 1];
+        if (url) {
+          this.handleDeepLink(url);
+        }
       }
     });
   }
@@ -355,13 +358,19 @@ class MainService {
    * @memberof MainService
    */
   private handleDeepLink = (url: string): void => {
-    const urlObject = new URL(url);
-    const urlDomain = urlObject.hostname;
+    try {
 
-    if (urlDomain === this.domain) {
-      const redirectUrl = url.replace(`twake:`, `${this.protocol}:`);
-
-      this.currentWindow?.loadURL(redirectUrl);
+      const urlObject = new URL(url);
+      const urlDomain = urlObject.hostname;
+      
+      if (urlDomain === this.domain) {
+        const redirectUrl = url.replace(`twake:`, `${this.protocol}:`);
+        
+        this.currentWindow?.loadURL(redirectUrl);
+      }
+    }
+    catch (e) {
+      console.error(e);
     }
   }
 }
