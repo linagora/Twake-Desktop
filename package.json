@@ -1,7 +1,7 @@
 {
   "name": "twake",
   "productName": "Twake",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "author": "Twake",
   "description": "Twake",
   "main": "./dist/index.js",
