@@ -39,3 +39,17 @@ Only Mac OS build.
 ### `npm run build-w`
 
 Only Windows OS build.
+
+# creating a release
+
+- update the package.json by incrementing the `version` key ( ie 1.2.3 )
+- commit the changes ( commit message should be `vx.y.z`, example `v1.2.8`)
+``` bash
+git add package.json
+git commit -am v1.2.8
+```
+- create a tag and push
+```bash
+git tag v1.2.8
+git push && git push --tags
+```
