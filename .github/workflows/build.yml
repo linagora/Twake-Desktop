@@ -20,6 +20,10 @@ jobs:
 
       - name: build/release
         uses: samuelmeuli/action-electron-builder@v1
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PROVIDER: ${{ secrets.APPLE_PROVIDER }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # release on commit with message "vx.x.x" ( ie v1.0.0 )
