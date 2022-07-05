@@ -22,6 +22,7 @@ import {
 } from "../../utils/server";
 import { DomainType, ProtocolType, Template } from "./types";
 import { download } from "electron-dl";
+import { autoUpdater } from "electron-updater"
 
 type CustomBrowserWindowEntriesType = {
   config_disable_buttons?: boolean;
@@ -251,6 +252,11 @@ class MainService {
           accelerator: "CmdOrCtrl+Alt+I",
           click: () => this.currentWindow?.webContents.openDevTools(),
         },
+        {
+          label: "Check for updated",
+          accelerator: "CmdOrCtrl+Alt+U",
+          click: () => autoUpdater.checkForUpdatesAndNotify(),
+        },
       ],
     },
   ];
@@ -285,6 +291,8 @@ class MainService {
     ipcMain.on("application:update_badge", (event, arg) => {
       app.setBadgeCount(parseInt(arg) || 0);
     });
+
+    autoUpdater.checkForUpdatesAndNotify();
   };
 
   /**
