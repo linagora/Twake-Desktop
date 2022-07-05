@@ -256,7 +256,7 @@ class MainService {
           click: () => this.currentWindow?.webContents.openDevTools(),
         },
         {
-          label: "Check for updated",
+          label: "Check for updates",
           accelerator: "CmdOrCtrl+Alt+U",
           click: () => autoUpdater.checkForUpdatesAndNotify(),
         },
