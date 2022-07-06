@@ -2,6 +2,7 @@ import electron, {
   app,
   BrowserWindow,
   BrowserWindowConstructorOptions,
+  dialog,
   ipcMain,
   Menu,
   shell,
@@ -185,7 +186,7 @@ class MainService {
       );
     }
 
-    this.currentWindow?.setTitle("Twake");
+    this.currentWindow?.setTitle(`Twake ${autoUpdater.currentVersion ?? ''}`);
 
     this.currentWindow?.setBackgroundColor("#0d0f38");
 
@@ -258,7 +259,7 @@ class MainService {
         {
           label: "Check for updates",
           accelerator: "CmdOrCtrl+Alt+U",
-          click: () => autoUpdater.checkForUpdatesAndNotify(),
+          click: () => this.handleUpdateCheck(),
         },
       ],
     },
@@ -372,6 +373,45 @@ class MainService {
     catch (e) {
       console.error(e);
     }
+  }
+
+  /**
+   * handle manual update check
+   * 
+   * @private
+   * @memberof MainService
+   * @returns {Promise<void>}
+   */
+  private handleUpdateCheck = (): void => {
+    autoUpdater.checkForUpdates()
+      .then(checkResult => {
+        if (checkResult) {
+          dialog.showMessageBox(this.currentWindow as BrowserWindow, {
+            type: "info",
+            title: "Update available",
+            message: `A new version of Twake is available: ${checkResult.updateInfo.version}.\n\n Would you like to download it now?`,
+            buttons: ["Download", "Cancel"],
+          }).then(result => {
+            if (result.response === 0) {
+              autoUpdater.downloadUpdate();
+            }
+          });
+        } else {
+          dialog.showMessageBox(this.currentWindow as BrowserWindow, {
+            type: "info",
+            title: "No update available",
+            message: "You are running the latest version of Twake",
+          });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        dialog.showMessageBox(this.currentWindow as BrowserWindow, {
+          type: "error",
+          title: "Error",
+          message: "An error occurred while checking for updates.",
+        });
+      });
   }
 }
 
