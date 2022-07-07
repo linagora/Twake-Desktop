@@ -22,7 +22,7 @@ import {
 } from "../../utils/server";
 import { DomainType, ProtocolType, Template } from "./types";
 import { download } from "electron-dl";
-import { autoUpdater } from "electron-updater"
+import { AppUpdater, autoUpdater } from "electron-updater"
 
 type CustomBrowserWindowEntriesType = {
   config_disable_buttons?: boolean;
@@ -383,6 +383,8 @@ class MainService {
    * @returns {Promise<void>}
    */
   private handleUpdateCheck = (): void => {
+    autoUpdater.autoDownload = false;
+
     autoUpdater.checkForUpdates()
       .then(checkResult => {
         if (checkResult) {
