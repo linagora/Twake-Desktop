@@ -2,6 +2,7 @@ import electron, {
   app,
   BrowserWindow,
   BrowserWindowConstructorOptions,
+  dialog,
   ipcMain,
   Menu,
   shell,
@@ -359,6 +360,9 @@ class MainService {
    */
   private handleDeepLink = (url: string): void => {
     try {
+      if (!url.match(/^(twake):\/\/[^ "]+$/)) {
+        return;
+      }
 
       const urlObject = new URL(url);
       const urlDomain = urlObject.hostname;
@@ -367,6 +371,14 @@ class MainService {
         const redirectUrl = url.replace(`twake:`, `${this.protocol}:`);
         
         this.currentWindow?.loadURL(redirectUrl);
+      } else {
+        dialog.showMessageBox({
+          type: "error",
+          title: "Error",
+          message: `invalid domain ${urlDomain}, the currently configured domain is ${this.domain} \n\n
+          Please change the domain in the settings to handle links from this domain`,
+          buttons: ["OK"],
+        });
       }
     }
     catch (e) {
