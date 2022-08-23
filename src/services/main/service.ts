@@ -22,7 +22,7 @@ import {
 } from "../../utils/server";
 import { DomainType, ProtocolType, Template } from "./types";
 import { download } from "electron-dl";
-import { AppUpdater, autoUpdater } from "electron-updater"
+import { autoUpdater } from "electron-updater"
 
 type CustomBrowserWindowEntriesType = {
   config_disable_buttons?: boolean;
@@ -296,7 +296,7 @@ class MainService {
       app.setBadgeCount(parseInt(arg) || 0);
     });
 
-    autoUpdater.checkForUpdatesAndNotify();
+    this.handleUpdateCheck();
   };
 
   /**
@@ -402,12 +402,8 @@ class MainService {
           dialog.showMessageBox(this.currentWindow as BrowserWindow, {
             type: "info",
             title: "Update available",
-            message: `A new version of Twake is available: ${checkResult.updateInfo.version}.\n\n Would you like to download it now?`,
-            buttons: ["Download", "Cancel"],
-          }).then(result => {
-            if (result.response === 0) {
-              autoUpdater.downloadUpdate();
-            }
+            message: `A new version of Twake is available: ${checkResult.updateInfo.version}`,
+            buttons: ["ok"],
           });
         } else {
           dialog.showMessageBox(this.currentWindow as BrowserWindow, {
