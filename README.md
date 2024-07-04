@@ -1,4 +1,24 @@
-# Supported OSes
+
+![Frame 1321317563](https://github.com/linagora/Twake-Desktop/assets/146178981/c484bb27-031a-4cb0-9bf3-c241a760b221)
+
+## :warning: Repository Deprecated
+
+This repository, Twake, is no longer actively maintained and has been officially deprecated.
+
+ :arrow_right: For current and future updates, please visit our new repository:
+🔗 <a href="https://github.com/linagora/twake-workplace"><strong>Twake-workplace</strong></a>
+
+We encourage all users to migrate to Twake-workplace for the latest features and ongoing support. Thank you for your continued support and contribution to the Twake community!  
+  
+
+---
+***
+___
+
+##  Archive README
+ 
+ 
+ Supported OSes
 
 - MacOS 10.11 and later (including M1 chips)
 - Windows 7 and later 32 and 64bit in the same file
